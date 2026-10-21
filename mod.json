@@ -1,0 +1,33 @@
+{
+  "geode": "4.0.0",
+  "gd": {
+    "win": "*",
+    "android": "*",
+    "mac": "*",
+    "ios": "*"
+  },
+  "id": "yourname.input-buffer",
+  "name": "Input Buffer",
+  "version": "v1.0.0",
+  "developer": "yourname",
+  "description": "Buffers jump presses made slightly too early so they still register.",
+  "settings": {
+    "enabled": {
+      "type": "bool",
+      "name": "Enabled",
+      "description": "Turn the input buffer on or off.",
+      "default": true
+    },
+    "window-ms": {
+      "type": "int",
+      "name": "Buffer window (ms)",
+      "description": "How long a press is held in reserve. About 17 ms is one frame at 60 FPS.",
+      "default": 33,
+      "min": 0,
+      "max": 150,
+      "control": {
+        "slider": true
+      }
+    }
+  }
+}
