@@ -1,15 +1,15 @@
 {
-  "geode": "4.0.0",
+  "geode": "5.11.2",
   "gd": {
     "win": "*",
     "android": "*",
     "mac": "*",
     "ios": "*"
   },
-  "id": "yourname.input-buffer",
+  "id": "brayden.input-buffer",
   "name": "Input Buffer",
   "version": "v1.0.0",
-  "developer": "yourname",
+  "developer": "brayden",
   "description": "Buffers jump presses made slightly too early so they still register.",
   "settings": {
     "enabled": {
