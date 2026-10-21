@@ -4,9 +4,9 @@
 using namespace geode::prelude;
 
 // Buffers jump presses by delaying the *release*.
-// If you tap slightly before you can act (landing, orb, pad), the game keeps
-// seeing the button as held for `window-ms`, so the action fires the moment
-// it becomes valid. Hold-based modes (ship, wave, swing) are skipped because
+// After you let go, the game keeps seeing the button as held for `window-ms`
+// longer, so a tap made slightly before you can act (landing, orb, pad)
+// still fires the moment it becomes valid. Hold-based modes (ship, wave, swing) are skipped because
 // a delayed release would hurt them.
 
 class $modify(BufferLayer, GJBaseGameLayer) {
@@ -53,13 +53,13 @@ class $modify(BufferLayer, GJBaseGameLayer) {
             return;
         }
 
-        // Release: if the press was very recent, keep it alive until the
-        // window runs out instead of releasing right away.
+        // Release: don't let go right away. Keep the button held for `window`
+        // longer, so a press made a little too early is still active when the
+        // player can finally act (landing, orb, pad).
         float window = windowSeconds();
-        float held = f->time - f->pressTime[i];
-        if (window > 0.f && held < window) {
+        if (window > 0.f) {
             f->pending[i] = true;
-            f->releaseAt[i] = f->pressTime[i] + window;
+            f->releaseAt[i] = f->time + window;
             return;
         }
 
