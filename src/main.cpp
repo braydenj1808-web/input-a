@@ -66,7 +66,7 @@ class $modify(BufferLayer, GJBaseGameLayer) {
         GJBaseGameLayer::handleButton(false, 1, isPlayer1);
     }
 
-    void processCommands(float dt) {
+    void processCommands(float dt, bool isHalfTick, bool isLastTick) {
         auto f = m_fields.self();
         f->time += dt;
 
@@ -82,6 +82,6 @@ class $modify(BufferLayer, GJBaseGameLayer) {
             }
         }
 
-        GJBaseGameLayer::processCommands(dt);
+        GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
     }
 };
